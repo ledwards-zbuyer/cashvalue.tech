@@ -198,7 +198,7 @@
     cInl.innerHTML =
       '<input type="checkbox" class="lm-check" data-tf-element-role="consent-opt-in" aria-label="I agree to receive calls, texts, and emails as described in the terms">' +
       'By checking this box, I agree to receive <span data-tf-element-role="contact-method">calls, texts, and emails</span> from' +
-      ' <span data-tf-element-role="consent-advertiser-name" id="consAdvertiser">zBuyer and <span class="lm-inline-pros"></span></span>,' +
+      ' <span data-tf-element-role="consent-advertiser-name" id="consAdvertiser">zBuyer dba CashValue.tech and <span class="lm-inline-pros"></span></span>,' +
       ' including marketing and AI-generated messages about my property at the number I provided.' +
       ' <span data-tf-element-role="consent-grantor-waived-regulated-technologies">These may use an autodialer or an artificial, prerecorded, or AI-generated voice</span>, <span data-tf-element-role="consent-grantor-waived-dnc">even if my' +
       ' number is on a Do Not Call list</span>. This is my express written consent, and <span data-tf-element-role="consent-grantor-waived-purchase-condition">I understand consent' +

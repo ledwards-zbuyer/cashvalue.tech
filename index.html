@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Get Your Cash Value Report | zBuyer</title>
+<title>Get Your Cash Value Report | CashValue.tech</title>
 <link rel="icon" type="image/png" href="assets/favicon-z.png">
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#0E1B33">
@@ -34,7 +34,8 @@
   /* z-index above the footer's 5 — the Smarty dropdown lives in this
      stacking context and must paint over the footer on short pages */
   .hero-inner{position:relative;z-index:30;max-width:820px;padding:0 24px;margin-top:44px}
-  .lp-logo{height:32px;width:auto;margin:0 auto 34px}
+  .lp-logo{font-size:25px;font-weight:800;letter-spacing:-.02em;color:#fff;margin:0 auto 34px}
+  .lp-logo .tld{color:var(--acc)}
   .eyebrow{display:inline-flex;align-items:center;gap:8px;color:#BBD7FB;font-weight:600;font-size:14px;letter-spacing:.04em;text-transform:uppercase;margin-bottom:18px}
   .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--acc);box-shadow:0 0 0 4px rgba(59,164,244,.3)}
   h1{color:#fff;font-size:60px;line-height:1.05;font-weight:800;letter-spacing:-.03em}
@@ -288,7 +289,7 @@
   @media (max-width:768px){
     .hero{min-height:560px}
     .hero-inner{margin-top:26px;padding:0 18px}
-    .lp-logo{height:27px;margin-bottom:24px}
+    .lp-logo{font-size:21px;margin-bottom:24px}
     h1{font-size:clamp(42px,11vw,50px)}
     .sub{font-size:16.5px;margin-top:14px}
     .search{flex-direction:column;align-items:stretch;gap:10px;padding:14px;border-radius:18px}
@@ -310,7 +311,7 @@
   <header class="hero">
     <div class="bgimg"></div>
     <div class="hero-inner">
-      <img class="lp-logo" src="assets/logo-blue-dark.png" alt="zBuyer">
+      <div class="lp-logo">CashValue<span class="tld">.tech</span></div>
       <div class="eyebrow"><span class="dot"></span>No fees · No obligation · 100% free</div>
       <h1>See your home's<br><span>cash value</span> today.</h1>
       <p class="sub">Your report blends pricing models with local agent and investor insight to pinpoint your home's cash value.</p>
@@ -326,7 +327,7 @@
     </div>
   </header>
 
-  <footer class="lfoot">© 2026 zBuyer. All rights reserved. · <a href="terms.html">Terms of Service</a> · <a href="privacy.html">Privacy Policy</a> · <a href="privacy.html#do-not-sell">Do Not Sell or Share My Personal Information</a></footer>
+  <footer class="lfoot">© 2026 zBuyer dba CashValue.tech. All rights reserved. · <a href="terms.html">Terms of Service</a> · <a href="privacy.html">Privacy Policy</a> · <a href="privacy.html#do-not-sell">Do Not Sell or Share My Personal Information</a></footer>
 
   <div class="lead-modal" id="leadModal" hidden>
     <div class="lm-backdrop"></div><!-- no data-close: clicking off must not dismiss -->
@@ -352,7 +353,7 @@
                  returns only when GetContactOptInNames renders per-pro
                  checkboxes — then it IS the selection UI. -->
             <p class="lm-matched" hidden><b>Matched real estate pro:</b> <b class="lm-names">Jason Dalbey (BHHS The Preferred Realty)</b></p>
-            <p class="lm-consent">By clicking &ldquo;Continue,&rdquo; you give <span data-tf-element-role="consent-advertiser-name" id="consAdvertiser">zBuyer and <span class="lm-cons-pros">Jason Dalbey (BHHS The Preferred Realty)</span></span> your express written consent to contact you <span data-tf-element-role="contact-method">by phone, text, and email</span>, including marketing and AI-generated messages about your property at the number provided. <span data-tf-element-role="consent-grantor-waived-regulated-technologies">This contact may use an autodialer or an artificial, prerecorded, or AI-generated voice</span>, and <span data-tf-element-role="consent-grantor-waived-dnc">may occur even if your number is on a Do Not Call list</span>. <span data-tf-element-role="consent-grantor-waived-purchase-condition">Consent is not a condition of purchase.</span> <span class="lm-carrier">Msg frequency varies. Msg &amp; data rates may apply.</span></p>
+            <p class="lm-consent">By clicking &ldquo;Continue,&rdquo; you give <span data-tf-element-role="consent-advertiser-name" id="consAdvertiser">zBuyer dba CashValue.tech and <span class="lm-cons-pros">Jason Dalbey (BHHS The Preferred Realty)</span></span> your express written consent to contact you <span data-tf-element-role="contact-method">by phone, text, and email</span>, including marketing and AI-generated messages about your property at the number provided. <span data-tf-element-role="consent-grantor-waived-regulated-technologies">This contact may use an autodialer or an artificial, prerecorded, or AI-generated voice</span>, and <span data-tf-element-role="consent-grantor-waived-dnc">may occur even if your number is on a Do Not Call list</span>. <span data-tf-element-role="consent-grantor-waived-purchase-condition">Consent is not a condition of purchase.</span> <span class="lm-carrier">Msg frequency varies. Msg &amp; data rates may apply.</span></p>
           </div>
           <p class="lm-agree" data-tf-element-role="consent-language">By clicking Continue, you agree to the <a href="terms.html" target="_blank" rel="noopener">Terms</a> and <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a></p>
           <button type="submit" class="lm-cta" data-tf-element-role="submit">Continue &rarr;</button>
@@ -437,7 +438,7 @@
         </div>
         <p class="lm-err" id="textErr" hidden></p>
         <div class="lm-disclosure" data-tf-element-role="consent-language">
-          <p class="lm-consent">By clicking &ldquo;Send my Report,&rdquo; you agree to receive <span data-tf-element-role="contact-method">automated texts</span> from <span data-tf-element-role="consent-advertiser-name">zBuyer</span> with your report link, including marketing and AI-generated messages, at the number above. Msg frequency varies. Msg &amp; data rates may apply. Reply HELP for help or STOP to cancel.</p>
+          <p class="lm-consent">By clicking &ldquo;Send my Report,&rdquo; you agree to receive <span data-tf-element-role="contact-method">automated texts</span> from <span data-tf-element-role="consent-advertiser-name">zBuyer dba CashValue.tech</span> with your report link, including marketing and AI-generated messages, at the number above. Msg frequency varies. Msg &amp; data rates may apply. Reply HELP for help or STOP to cancel.</p>
         </div>
         <button type="button" class="lm-cta" id="textReport" data-tf-element-role="submit">Send my Report &rarr;</button>
         <button type="button" class="lm-nothanks" id="noText">No thanks, don&rsquo;t send my report</button>
@@ -472,7 +473,7 @@
             <circle cx="52" cy="18" r="2.8" fill="#C7DFFB"/>
           </svg>
         </div>
-        <p class="lm-sub lm-q">A local zBuyer expert will be in touch shortly to discuss your cash value and your best selling options.</p>
+        <p class="lm-sub lm-q">A local CashValue.tech expert will be in touch shortly to discuss your cash value and your best selling options.</p>
         <button type="button" class="lm-cta" id="toSms">View my Report &rarr;</button>
         <button type="button" class="lm-nothanks" id="noContact">Do not contact me</button>
       </div>
@@ -488,7 +489,7 @@
         <button type="button" class="lm-cta" id="viewReport">Continue &rarr;</button>
       </div>
     </div>
-    <p class="lm-peek">&copy; 2026 zBuyer &middot; <a href="terms.html" target="_blank" rel="noopener">Terms</a> &middot; <a href="privacy.html" target="_blank" rel="noopener">Privacy</a> &middot; <a href="privacy.html#do-not-sell" target="_blank" rel="noopener">Do Not Sell or Share My Personal Information</a></p>
+    <p class="lm-peek">&copy; 2026 zBuyer dba CashValue.tech &middot; <a href="terms.html" target="_blank" rel="noopener">Terms</a> &middot; <a href="privacy.html" target="_blank" rel="noopener">Privacy</a> &middot; <a href="privacy.html#do-not-sell" target="_blank" rel="noopener">Do Not Sell or Share My Personal Information</a></p>
     </div>
     <div class="lm-below">
       <div class="lm-progress">
@@ -499,7 +500,7 @@
         <a href="terms.html" target="_blank" rel="noopener">Terms of Service</a>
         <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a>
         <a href="privacy.html#do-not-sell" target="_blank" rel="noopener">Do Not Sell or Share My Personal Information</a>
-        <span>&copy; 2026 zBuyer. All rights reserved.</span>
+        <span>&copy; 2026 zBuyer dba CashValue.tech. All rights reserved.</span>
       </div>
     </div>
   </div>
