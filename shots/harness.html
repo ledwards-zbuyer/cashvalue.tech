@@ -1,13 +1,13 @@
 <!doctype html>
 <meta charset="utf-8">
 <style>html,body{margin:0;height:100%}iframe{border:0;width:100%;height:100%;display:block}</style>
-<iframe id="f" src="/mockups/option-1-classic.html"></iframe>
+<iframe id="f" src="/index.html?mid=56&affid=testing"></iframe>
 <script>
 // Drives the page for screenshots: ?step=allset|sms|ac
 var f = document.getElementById("f");
 var hp = new URLSearchParams(location.search);
 if (hp.get("src")) f.src = hp.get("src"); // full override (encodeURIComponent it)
-else if (hp.get("terms")) f.src = "/mockups/option-1-classic.html?terms=" + hp.get("terms");
+else if (hp.get("terms")) f.src = "/index.html?mid=56&affid=testing&terms=" + hp.get("terms");
 f.onload = function () {
   var d = f.contentDocument, w = f.contentWindow;
   var step = new URLSearchParams(location.search).get("step");

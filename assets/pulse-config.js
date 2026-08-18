@@ -2,7 +2,7 @@
  *
  * Including this file (plus pulse-api.js) on a page IS the enable switch:
  * pages without these scripts (homepage, compare tools) stay inert demos.
- * Currently enabled on: landing-classic-blue.html only.
+ * Currently enabled on: index.html (the lander) only.
  *
  * Endpoint is zBuyer's internal AjaxServer (IIS/ASP.NET). CORS is open
  * (Access-Control-Allow-Origin: *) and no client secret is involved — the

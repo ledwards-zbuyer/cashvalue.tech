@@ -12,7 +12,7 @@
   var addr = document.getElementById("addr");
   if (!modal || !heroForm || !addr) return;
 
-  var REPORT_PAGE = "report-classic-blue.html"; // demo Cash Value Report page
+  var REPORT_PAGE = "report.html"; // demo Cash Value Report page
 
   // Back from the report restores this page from the back/forward cache
   // exactly as it was left — mid-finale, an empty stage dot. Reload instead

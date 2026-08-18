@@ -34,7 +34,7 @@
     .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
     .then(function (meta) {
       if (meta.status !== "OK") return; // no imagery for this address — keep the default photo
-      // Same three layers as the stylesheet (landing-classic-blue.html .bgimg):
+      // Same three layers as the stylesheet (index.html .bgimg):
       // dark legibility gradient on top, navy base underneath — only the photo
       // in the middle changes.
       bg.style.backgroundImage =
