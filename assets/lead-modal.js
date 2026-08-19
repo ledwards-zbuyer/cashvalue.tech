@@ -290,6 +290,10 @@
     // opt-in contacts are recorded for those sessions either).
     if (!FORCED_MAXSOLD) P.getOptInContacts().then(function (d) {
       if (!d || !d.contactOptInNames || !d.contactOptInNames.length) return;
+      // v2 sells exclusively (Lucas 2026-08-19): only the FIRST contact on
+      // the list is shown, consented to, and recorded — never a roster, never
+      // per-pro checkboxes. The v1 previews below keep the multi-pro render.
+      if (expertOpt) d = { contactOptInNames: [d.contactOptInNames[0]], renderAsCheckboxes: false };
       optInData = d;
       // Record exactly which contact set this user was shown.
       psave(P.F.contactOptInNames, JSON.stringify(d.contactOptInNames));
@@ -341,8 +345,6 @@
       var inSentence = d.renderAsCheckboxes ? "the real estate pros selected above" : namesStr;
       if (consPros) consPros.textContent = inSentence;
       if (inlinePros) inlinePros.textContent = inSentence;
-      var roleSpan = modal.querySelector(".lm-v2-role");
-      if (roleSpan && (d.renderAsCheckboxes || d.contactOptInNames.length > 1)) roleSpan.textContent = "independent licensed professionals";
     });
   }
 

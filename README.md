@@ -30,10 +30,11 @@ Both funnel pages ship the rebuilt opt-in screens:
   preview bubble (doubles as sample message #1), frequency/rates/HELP/STOP, and the
   bolded no-sharing declaration. Decline is "No thanks — I'll view it online."
 - `?terms=v1` restores the previous screens; `exclusive` / `maxsold` / `inline` /
-  `inline-maxsold` ride on v1 (see `compare.html`). If the live
-  `GetContactOptInNames` returns multiple pros under v2, the checkbox sentence joins
-  the names (per-pro checkboxes render in the roster line; a dedicated v2 multi-pro
-  treatment is future work).
+  `inline-maxsold` ride on v1 (see `compare.html`).
+- **v2 is exclusive-only**: whatever the live `GetContactOptInNames` returns, only the
+  **first** contact is shown in the consent sentence, and only that contact's ID is
+  recorded on opt-in — no roster, no per-pro checkboxes. The v1 previews keep the
+  multi-pro render for comparison.
 
 ## ⚠️ The lander is live
 
