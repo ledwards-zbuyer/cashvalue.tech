@@ -716,9 +716,23 @@
     // was actually given; otherwise the report stands alone.
     var allsetSub = modal.querySelector('[data-screen="allset"] .lm-sub');
     if (expertOpt && allsetSub) {
-      allsetSub.textContent = expertOpt.checked
-        ? "A local CashValue.tech expert will be in touch shortly to discuss your cash value and your best selling options."
-        : "Your Cash Value Report is ready \u2014 review it whenever you like. No one will reach out unless you ask.";
+      if (expertOpt.checked) {
+        // Name the member the seller just consented to (v2 is exclusive:
+        // the first live contact, or the consent sentence's demo name).
+        var c0 = optInData && optInData.contactOptInNames && optInData.contactOptInNames[0];
+        var mNm = "", mCo = "";
+        if (c0) { mNm = c0.displayName; mCo = c0.displayCompany || ""; }
+        else {
+          var mb = modal.querySelector(".lm-cons-pros");
+          var mm = (mb ? mb.textContent.trim() : "").match(/^([^(]+?)\s*(?:\(([^)]+)\))?$/);
+          if (mm) { mNm = (mm[1] || "").trim(); mCo = (mm[2] || "").trim(); }
+        }
+        allsetSub.textContent = mNm
+          ? mNm + ", your local expert" + (mCo ? " with " + mCo : "") + ", will be in touch shortly to discuss your cash value and your best selling options."
+          : "Your local expert will be in touch shortly to discuss your cash value and your best selling options.";
+      } else {
+        allsetSub.textContent = "Your Cash Value Report is ready \u2014 review it whenever you like. No one will reach out unless you ask.";
+      }
     }
     // v2 SMS preview: personalize with the entered first name + picked
     // address so the bubble doubles as sample message #1.
@@ -731,7 +745,7 @@
       sp.appendChild(document.createTextNode((fn ? fn + ", your" : "Your") + " Cash Value Report" + (street ? " for " + street : "") + " is ready: "));
       var lk = document.createElement("span"); lk.className = "lm-link"; lk.textContent = "cashvalue.tech/r/8k2x4";
       sp.appendChild(lk);
-      sp.appendChild(document.createTextNode(" \u2014 I\u2019m the CashValue.tech AI assistant. Reply here anytime with a question about your numbers. Reply HELP for help, STOP to opt out."));
+      sp.appendChild(document.createTextNode(" \u2014 I\u2019m the CashValue AI assistant. Reply here anytime with a question about your numbers. Reply HELP for help, STOP to opt out."));
     }
     // Access-anytime step opens with the contact step's number in place.
     if (textPhone && !textPhone.value) textPhone.value = phoneEl.value;
