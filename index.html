@@ -23,7 +23,8 @@
 
   nav{position:absolute;top:0;left:0;right:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:22px 56px}
   .logo{font-size:24px;font-weight:800;letter-spacing:-.02em;color:#fff}
-  .logo .tld{color:var(--acc)}
+  .logo .tld{background:linear-gradient(110deg,transparent 38%,rgba(255,255,255,.88) 50%,transparent 62%),linear-gradient(90deg,#7FC4FF,#3BA4F4);background-size:250% 100%,100% 100%;background-position:130% 0,0 0;background-repeat:no-repeat;-webkit-background-clip:text;background-clip:text;color:transparent;animation:cvshine 4s ease-in-out infinite}
+  @media (prefers-reduced-motion:reduce){.logo .tld{animation:none;background-position:-45% 0,0 0}}
   .navlinks{display:flex;align-items:center;gap:34px;font-weight:500;font-size:15px;color:#fff;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)}
   .navlinks a{opacity:.92}
   .nav-right{display:flex;align-items:center;gap:18px}
