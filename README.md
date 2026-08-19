@@ -8,12 +8,32 @@ seller path @ `52087da`, rebranded **zBuyer dba CashValue.tech**.
 
 | Page | Source (`new-zbuyer/mockups/`) | Purpose |
 |---|---|---|
-| `index.html` | `landing-classic-blue.html` | DR lander + full lead-funnel modal (**live** Pulse API) |
+| `index.html` | `option-1-classic.html` | Homepage front door: address-entry hero + full funnel modal (**live** Pulse API). Stripped of all agents/investors, buy-side, and zbuyer.com links — consumer seller path only. |
+| `go.html` | `landing-classic-blue.html` | DR lander for paid traffic (`data-dr` modal lock-in, same live funnel) |
 | `report.html` | `report-classic-blue.html` | Cash Value Report — the funnel destination |
 | `intel.html` | `report-intel-classic-blue.html` | Property Intelligence Report ("Go deeper" from the report) |
 | `terms.html` / `privacy.html` | `terms-` / `privacy-classic-blue.html` | Legal pages (template copy) |
-| `compare.html` | `compare-terms.html` | Internal chooser for consent/terms variants |
-| `shots/harness.html` | `shots/harness.html` | QA step-driver (iframes the lander) |
+| `compare.html` | `compare-terms.html` | Internal chooser: consent v2 vs v1 + v1 sale-model variants |
+| `shots/harness.html` | `shots/harness.html` | QA step-driver (iframes the homepage) |
+
+## Consent architecture v2 (the default)
+
+Both funnel pages ship the rebuilt opt-in screens:
+
+- **Contact step** — the member's consent is an **optional checkbox** naming only the
+  matched agent ("independent licensed agent"); zBuyer appears in no mobile consent on
+  this screen. Declining still delivers the report, skips the expert handoff (no
+  RealtorOpt / opt-in contact saves, neutral all-set copy). The clickwrap names
+  zBuyer dba CashValue.tech for Terms/Privacy.
+- **SMS step** — the campaign's own 10DLC opt-in and **the screenshot to submit with
+  campaign registration**: sender + program description, personalized first-text
+  preview bubble (doubles as sample message #1), frequency/rates/HELP/STOP, and the
+  bolded no-sharing declaration. Decline is "No thanks — I'll view it online."
+- `?terms=v1` restores the previous screens; `exclusive` / `maxsold` / `inline` /
+  `inline-maxsold` ride on v1 (see `compare.html`). If the live
+  `GetContactOptInNames` returns multiple pros under v2, the checkbox sentence joins
+  the names (per-pro checkboxes render in the roster line; a dedicated v2 multi-pro
+  treatment is future work).
 
 ## ⚠️ The lander is live
 
@@ -24,8 +44,9 @@ harness already bake these params into their links.
 
 ## Param quick-reference
 
-- `?terms=exclusive|maxsold|inline|inline-maxsold` — consent-step variants. Forcing a
-  variant skips the live `GetContactOptInNames` render; **leads still post**.
+- `?terms=v1|exclusive|maxsold|inline|inline-maxsold` — consent-step variants (all
+  restore the v1 screens; default is v2). Forcing a sale model skips the live
+  `GetContactOptInNames` render; **leads still post under every variant**.
 - `?sms=0` — skip the "Access your report anytime" step (rail becomes 4 steps)
 - `?dnc=0` — remove the "Do not contact me" link on the all-set step
 - z-params (`zfname zlastname zphone zemail zstreet zcity zstate zzipcode`) — publisher prepop

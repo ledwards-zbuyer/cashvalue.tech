@@ -41,11 +41,38 @@
 <body>
   <div class="logo">CashValue<span class="tld">.tech</span></div>
   <h1>Compare lead terms</h1>
-  <p class="sub">Preview the seller funnel under each sale model — the difference shows up in the matched-pro disclosure and consent language on the contact step.</p>
+  <p class="sub">Preview the funnel under each consent architecture and sale model. v2 (the live default) separates the member’s consent from the campaign’s own SMS opt-in; the v1 era and its sale-model variants stay parked behind ?terms= for comparison.</p>
 
   <div class="cards">
     <div class="card">
-      <span class="kicker">One buyer</span>
+      <span class="kicker">Default &middot; live</span>
+      <h2>Consent v2</h2>
+      <p>Member consent and campaign opt-in fully separated.</p>
+      <ul>
+        <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l4.5 4.5L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Optional agent-only checkbox on the lead form &mdash; zBuyer named in no mobile consent there</li>
+        <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l4.5 4.5L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>SMS step is the campaign&rsquo;s own 10DLC opt-in: preview bubble + no-sharing declaration</li>
+        <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l4.5 4.5L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>The report is never conditioned on either opt-in</li>
+      </ul>
+      <a class="go" href="index.html?mid=56&affid=testing">Preview v2 &rarr;</a>
+      <a class="go alt" href="go.html?mid=56&affid=testing">v2 on the DR lander &rarr;</a>
+    </div>
+
+    <div class="card">
+      <span class="kicker">Parked</span>
+      <h2>Consent v1</h2>
+      <p>The previous era: one implied consent covering company + pro.</p>
+      <ul>
+        <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l4.5 4.5L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Consent granted by clicking Continue &mdash; no checkbox</li>
+        <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l4.5 4.5L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Names zBuyer dba CashValue.tech + the matched pro in one sentence</li>
+        <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l4.5 4.5L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>The sale-model variants below all ride on v1</li>
+      </ul>
+      <a class="go" href="index.html?terms=v1&mid=56&affid=testing">Preview v1 &rarr;</a>
+    </div>
+  </div>
+
+  <div class="cards">
+    <div class="card">
+      <span class="kicker">v1 &middot; One buyer</span>
       <h2>Exclusive Lead</h2>
       <p>The lead is sold to a single real estate pro.</p>
       <ul>
@@ -58,7 +85,7 @@
     </div>
 
     <div class="card">
-      <span class="kicker">Up to six buyers</span>
+      <span class="kicker">v1 &middot; Up to six buyers</span>
       <h2>Max Sold</h2>
       <p>The lead can be sold to up to six real estate pros.</p>
       <ul>
@@ -71,6 +98,6 @@
     </div>
   </div>
 
-  <p class="note">Both open the same funnel — enter an address and continue to the contact step to see the disclosure differences. Demo copy is placeholder pending final legal language. Previews open the live lander: completed runs record test leads (mid=56/affid=testing), and the modal locks on the lander &mdash; X/Esc close only on the contact step.</p>
+  <p class="note">All previews open the same funnel — enter an address and continue to the contact step to see the disclosure differences. Demo copy is placeholder pending final legal language. Previews open the live lander: completed runs record test leads (mid=56/affid=testing), and the modal locks on the lander &mdash; X/Esc close only on the contact step.</p>
 </body>
 </html>
