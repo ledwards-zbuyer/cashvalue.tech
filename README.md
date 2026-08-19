@@ -71,8 +71,9 @@ Smarty's host allowlist includes `localhost`. Open
    `cashvalue.tech`; tick Enforce HTTPS once the certificate issues.
 2. **DNS**: apex `A` → `185.199.108.153`, `185.199.109.153`, `185.199.110.153`,
    `185.199.111.153`; `www` `CNAME` → `ledwards-zbuyer.github.io`.
-3. **Smarty** (smarty.com/account/keys, embedded key): add hosts `cashvalue.tech` and
-   `www.cashvalue.tech` — without this, address autocomplete fails on the live domain.
+3. **Smarty**: done — `assets/smarty-config.js` carries the cashvalue.tech embedded
+   key (host-locked; make sure its allow-list includes `cashvalue.tech`,
+   `www.cashvalue.tech`, and `localhost` for local QA).
 4. **Google Cloud**: add HTTP referrers `https://cashvalue.tech/*` and
    `https://www.cashvalue.tech/*` to the Maps/Geocoding key in `assets/google-config.js`.
 
