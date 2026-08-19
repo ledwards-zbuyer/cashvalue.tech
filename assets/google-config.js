@@ -10,9 +10,8 @@
  *    "Geocoding API" on the project; create an API key.
  * 2. Restrict the key BEFORE pasting it here:
  *      - Application restriction: Websites (HTTP referrers) —
- *            https://ledwards-zbuyer.github.io/*
- *            http://localhost:8741/*
- *            https://zbuyer.com/*  and  https://www.zbuyer.com/*
+ *            cashvalue.tech/*  and  www.cashvalue.tech/*
+ *            localhost:8741/*
  *      - API restriction: Maps JavaScript API + Geocoding API only.
  * 3. Paste the key below. Referrer-locked keys are safe in page source.
  *
@@ -21,4 +20,4 @@
  * partial addresses. Geocoding bills ~$5 per 1,000 calls, charged only when
  * Smarty misses twice.
  */
-window.GOOGLE_MAPS_KEY = "AIzaSyBBJPyttL0npyhmgAuKAoUrTBR5ffecnOs";
+window.GOOGLE_MAPS_KEY = "AIzaSyDPWCKaiYtGbL8qTKgCFrzu8sxCLCUYaVc";

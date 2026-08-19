@@ -74,8 +74,11 @@ Smarty's host allowlist includes `localhost`. Open
 3. **Smarty**: done — `assets/smarty-config.js` carries the cashvalue.tech embedded
    key (host-locked; make sure its allow-list includes `cashvalue.tech`,
    `www.cashvalue.tech`, and `localhost` for local QA).
-4. **Google Cloud**: add HTTP referrers `https://cashvalue.tech/*` and
-   `https://www.cashvalue.tech/*` to the Maps/Geocoding key in `assets/google-config.js`.
+4. **Google Cloud**: done — `assets/google-config.js` carries a referrer-locked key
+   (project "My First Project", restricted to Maps JavaScript API + Geocoding API,
+   referrers `cashvalue.tech/*`, `www.cashvalue.tech/*`, `localhost:8741/*`). Note:
+   Maps serves only billing-enabled projects — activate the account before the
+   free-trial credit lapses or this prepop fallback quietly stops.
 
 ## Caveats
 
