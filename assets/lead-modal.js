@@ -1,9 +1,9 @@
 /* zBuyer lead-capture modal — opens after the hero address step.
  *
- * Step 2 (contact): name / phone / email + required "Open to selling?"
- *   intent chips (Now / Soon / Eventually) + TCPA consent.
- * Step 3 (allset): confirmation — a local expert will be in touch. No ask.
- * Step 4 (sms): optional — text the report link to their mobile.
+ * Contact step: name / phone / email + v2 consent — an OPTIONAL member-consent
+ *   checkbox naming only the matched agent (?terms=v1 restores the v1 screens).
+ * SMS step: the campaign's own 10DLC opt-in — preview bubble + Text my Report.
+ * All-set: confirmation; the expert line shows only if member consent was given.
  * The final buttons navigate to the demo report page. Vanilla JS, no deps.
  */
 (function () {
@@ -66,6 +66,52 @@
   if (/[?&]dnc=(0|off|no|false)\b/i.test(window.location.search)) {
     var ncLink = document.getElementById("noContact");
     if (ncLink) ncLink.remove();
+  }
+
+  // ---- v2 consent architecture (default) vs v1 previews ----
+  // The markup ships v2: an OPTIONAL member-consent checkbox naming only the
+  // agent on the contact step, and the campaign's own SMS opt-in on the text
+  // step. ?terms=v1|exclusive|maxsold|inline* restores the v1 screens so
+  // compare.html can preview both eras; the maxsold/inline logic below then
+  // operates on the restored v1 markup. Placeholder copy pending final legal.
+  var TERMS_V1 = /[?&]terms=(v1|exclusive|(inline-)?maxsold|inline)\b/.test(window.location.search);
+  if (TERMS_V1) {
+    var v2c = document.getElementById("v2Consent");
+    if (v2c) {
+      var v1wrap = document.createElement("div");
+      v1wrap.innerHTML = '<div class="lm-disclosure" data-tf-element-role="consent-language">' +
+        '<p class="lm-matched" hidden><b>Matched real estate pro:</b> <b class="lm-names">Jason Dalbey (BHHS The Preferred Realty)</b></p>' +
+        '<p class="lm-consent">By clicking \u201cContinue,\u201d you give <span data-tf-element-role="consent-advertiser-name" id="consAdvertiser">zBuyer dba CashValue.tech and <span class="lm-cons-pros">Jason Dalbey (BHHS The Preferred Realty)</span></span> your express written consent to contact you <span data-tf-element-role="contact-method">by phone, text, and email</span>, including marketing and AI-generated messages about your property at the number provided. <span data-tf-element-role="consent-grantor-waived-regulated-technologies">This contact may use an autodialer or an artificial, prerecorded, or AI-generated voice</span>, and <span data-tf-element-role="consent-grantor-waived-dnc">may occur even if your number is on a Do Not Call list</span>. <span data-tf-element-role="consent-grantor-waived-purchase-condition">Consent is not a condition of purchase.</span> <span class="lm-carrier">Msg frequency varies. Msg &amp; data rates may apply.</span></p></div>';
+      v2c.parentNode.replaceChild(v1wrap.firstChild, v2c);
+      var agreeV1 = modal.querySelector(".lm-agree");
+      if (agreeV1) agreeV1.innerHTML = 'By clicking Continue, you agree to the <a href="terms.html" target="_blank" rel="noopener">Terms</a> and <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a>';
+    }
+    var trV1 = modal.querySelector('[data-screen="textreport"]');
+    if (trV1) {
+      trV1.innerHTML = '<h3>Access your report anytime</h3>' +
+        '<div class="lm-gfx"><svg width="170" height="118" viewBox="0 0 170 118" fill="none" aria-hidden="true"><circle cx="85" cy="59" r="46" fill="#E7EEFC"/><circle cx="85" cy="59" r="28" fill="#FFFFFF" stroke="#14233D" stroke-width="5"/><path d="M85 59V44" stroke="#1D4FD7" stroke-width="4" stroke-linecap="round"/><path d="M85 59l10 7" stroke="#3BA4F4" stroke-width="4" stroke-linecap="round"/><circle cx="85" cy="59" r="3.2" fill="#14233D"/><path d="M119 36a42 42 0 0 1 8 23" stroke="#3BA4F4" stroke-width="2.4" stroke-linecap="round" fill="none"/><path d="M123 55l4 6 5-6" stroke="#3BA4F4" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M27 34v12M21 40h12" stroke="#3BA4F4" stroke-width="2.4" stroke-linecap="round"/><path d="M150 78v10M145 83h10" stroke="#C7DFFB" stroke-width="2.4" stroke-linecap="round"/><circle cx="38" cy="86" r="3.4" fill="#CDE3FB"/><circle cx="52" cy="18" r="2.8" fill="#C7DFFB"/></svg></div>' +
+        '<p class="lm-sub lm-q">Check anytime. We\u2019ll text the link.</p>' +
+        '<div class="lm-phone-wrap"><input id="textPhone" type="tel" inputmode="tel" placeholder="Phone number" autocomplete="tel" aria-label="Mobile number" data-tf-element-role="consent-grantor-phone"><svg class="lm-phone-edit" width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 20h4L18.5 9.5a2.1 2.1 0 0 0-3-3L5 17v3z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M13.5 6.5l3 3" stroke="currentColor" stroke-width="2"/></svg></div>' +
+        '<p class="lm-err" id="textErr" hidden></p>' +
+        '<div class="lm-disclosure" data-tf-element-role="consent-language"><p class="lm-consent">By clicking \u201cSend my Report,\u201d you agree to receive <span data-tf-element-role="contact-method">automated texts</span> from <span data-tf-element-role="consent-advertiser-name">zBuyer dba CashValue.tech</span> with your report link, including marketing and AI-generated messages, at the number above. Msg frequency varies. Msg &amp; data rates may apply. Reply HELP for help or STOP to cancel.</p></div>' +
+        '<button type="button" class="lm-cta" id="textReport" data-tf-element-role="submit">Send my Report &rarr;</button>' +
+        '<button type="button" class="lm-nothanks" id="noText">No thanks, don\u2019t send my report</button>';
+    }
+  }
+  // v2 only (null under v1): the optional member-consent checkbox.
+  var expertOpt = document.getElementById("expertOpt");
+  var v2Box = document.getElementById("v2Consent");
+  if (expertOpt && v2Box) {
+    expertOpt.addEventListener("change", function () {
+      v2Box.classList.toggle("checked", expertOpt.checked);
+    });
+    // Tap anywhere in the box (outside the label, which toggles natively)
+    // also flips the check — same ergonomics as the v1 inline variant.
+    v2Box.addEventListener("click", function (e) {
+      if (e.target.closest(".lm-v2-row, a, .lm-check")) return;
+      expertOpt.checked = !expertOpt.checked;
+      v2Box.classList.toggle("checked", expertOpt.checked);
+    });
   }
 
   // Legal rail below the fold: "Step x of N" + dots (N = dot count in the
@@ -295,6 +341,8 @@
       var inSentence = d.renderAsCheckboxes ? "the real estate pros selected above" : namesStr;
       if (consPros) consPros.textContent = inSentence;
       if (inlinePros) inlinePros.textContent = inSentence;
+      var roleSpan = modal.querySelector(".lm-v2-role");
+      if (roleSpan && (d.renderAsCheckboxes || d.contactOptInNames.length > 1)) roleSpan.textContent = "independent licensed professionals";
     });
   }
 
@@ -512,6 +560,9 @@
       psave(P.F.email, email);
       psave(P.F.contactFormSubmit, "true");
       psave(P.F.listedQuestion, "No"); // from OnboardAPI once that's ready
+      // v2: the checkbox IS the consent moment — record the opt (and the
+      // opt-in contacts below) only when it was actually given.
+      if (expertOpt && expertOpt.checked) psave(P.F.realtorOpt, "ok");
       // In the inline variant the matched line is hidden (names live in the
       // consent sentence) — record only what was actually displayed.
       var mEl = modal.querySelector(".lm-matched"), cEl = modal.querySelector(".lm-consent"),
@@ -521,7 +572,7 @@
       // rebuilds https://cert.trustedform.com/<token> for the Retain claim.
       var tf = document.getElementsByName("xxTrustedFormCertUrl")[0];
       if (tf && tf.value) psave(P.F.tfCertURL, tf.value.split("/").pop());
-      if (optInData) {
+      if (optInData && (!expertOpt || expertOpt.checked)) {
         if (optInData.renderAsCheckboxes) {
           modal.querySelectorAll(".lm-optin input:checked").forEach(function (cb) {
             psave(P.F.optInContact, cb.value);
@@ -576,7 +627,7 @@
   // ---- all-set (RealtorOpt) step: now the LAST step before the report ----
   document.getElementById("toSms").addEventListener("click", function () {
     // The all-set step is the RealtorOpt step in the lead record.
-    if (P) psave(P.F.realtorOpt, "ok");
+    if (P && (!expertOpt || expertOpt.checked)) psave(P.F.realtorOpt, "ok");
     goToReport();
   });
   // "Do not contact me": records DNC=true, fires NO RealtorOpt, still gets
@@ -658,6 +709,27 @@
   document.getElementById("viewReport").addEventListener("click", function () {
     if (P && specialText && specialText.value.trim()) {
       psave(P.F.somethingSpecial, specialText.value.trim());
+    }
+    // v2: the all-set line only promises an expert when the member consent
+    // was actually given; otherwise the report stands alone.
+    var allsetSub = modal.querySelector('[data-screen="allset"] .lm-sub');
+    if (expertOpt && allsetSub) {
+      allsetSub.textContent = expertOpt.checked
+        ? "A local CashValue.tech expert will be in touch shortly to discuss your cash value and your best selling options."
+        : "Your Cash Value Report is ready \u2014 review it whenever you like. No one will reach out unless you ask.";
+    }
+    // v2 SMS preview: personalize with the entered first name + picked
+    // address so the bubble doubles as sample message #1.
+    var sp = document.getElementById("smsPreview");
+    if (sp) {
+      var fn = (nameEl.value || "").trim().split(/\s+/)[0] || "";
+      var street = "";
+      try { street = (sessionStorage.getItem("zbAddressDisplay") || addr.value || "").split(",")[0].trim(); } catch (e) {}
+      sp.textContent = "";
+      sp.appendChild(document.createTextNode((fn ? fn + ", your" : "Your") + " Cash Value Report" + (street ? " for " + street : "") + " is ready: "));
+      var lk = document.createElement("span"); lk.className = "lm-link"; lk.textContent = "cashvalue.tech/r/8k2x4";
+      sp.appendChild(lk);
+      sp.appendChild(document.createTextNode(" \u2014 I\u2019m the CashValue.tech AI assistant. Reply here anytime with a question about your numbers. Reply HELP for help, STOP to opt out."));
     }
     // Access-anytime step opens with the contact step's number in place.
     if (textPhone && !textPhone.value) textPhone.value = phoneEl.value;
