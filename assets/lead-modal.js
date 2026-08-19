@@ -506,6 +506,11 @@
     // a raw typed address still reaches the partial lead as the street field.
     if (P && !window.zbSelectedAddress) psave(P.F.street, addr.value.trim());
     if (P) { psave(P.F.addressSubmitClicked, "true"); psave(P.F.contactFormDisplayed, "true"); }
+    // The report greets the seller with the address they submitted — keep a
+    // display copy even when it was typed rather than picked from Smarty.
+    if (!window.zbSelectedAddress) {
+      try { sessionStorage.setItem("zbAddressDisplay", addr.value.trim()); } catch (err) {}
+    }
     open();
   });
 
@@ -733,19 +738,6 @@
       } else {
         allsetSub.textContent = "Your Cash Value Report is ready \u2014 review it whenever you like. No one will reach out unless you ask.";
       }
-    }
-    // v2 SMS preview: personalize with the entered first name + picked
-    // address so the bubble doubles as sample message #1.
-    var sp = document.getElementById("smsPreview");
-    if (sp) {
-      var fn = (nameEl.value || "").trim().split(/\s+/)[0] || "";
-      var street = "";
-      try { street = (sessionStorage.getItem("zbAddressDisplay") || addr.value || "").split(",")[0].trim(); } catch (e) {}
-      sp.textContent = "";
-      sp.appendChild(document.createTextNode((fn ? fn + ", your" : "Your") + " Cash Value Report" + (street ? " for " + street : "") + " is ready: "));
-      var lk = document.createElement("span"); lk.className = "lm-link"; lk.textContent = "cashvalue.tech/r/8k2x4";
-      sp.appendChild(lk);
-      sp.appendChild(document.createTextNode(" \u2014 I\u2019m the CashValue AI assistant. Reply here anytime with a question about your numbers. Reply HELP for help, STOP to opt out."));
     }
     // Access-anytime step opens with the contact step's number in place.
     if (textPhone && !textPhone.value) textPhone.value = phoneEl.value;

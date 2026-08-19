@@ -12,7 +12,6 @@
   /* Cash Value Report v2 — real page (was a static dashboard screenshot).
    * Zoodealio-powered, classic-blue funnel styling. Variants:
    *   ?values=combined|options|spectrum  — value-display strategy (default combined)
-   *   ?terms=exclusive|maxsold           — one expert vs 6-buyer carousel (default exclusive)
    * Demo data throughout; compare-report.html is the team jump page. */
   /* Report palette: the original classic-blue family, matching the funnel
      (a quiet slate-navy retone was tried 2026-07-27 and reverted 07-28). */
@@ -75,8 +74,6 @@
   .mast .facts b{color:var(--ink);font-weight:700}
   .mast .photo{flex:none;width:300px;height:170px;object-fit:cover;border-radius:14px}
 
-  /* ---- expert concierge (above the fold) ---- */
-  .xslot .eyebrow{color:var(--muted)}
   .xhead{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:12px}
   .xhead .xcount{font-size:12.5px;color:var(--muted)}
   .xcard{display:flex;align-items:center;gap:16px}
@@ -269,7 +266,6 @@
          selling-path anchors. Init script near the bottom. -->
     <div id="vSlider"></div>
     <p class="vnote">This range reflects different ways to sell — it isn't an appraisal of your home. Where you land depends on the path you choose.</p>
-    <a class="vask" href="tel:1234567890">Talk through your range with <span class="xName">Jason</span> &rarr;</a>
   </section>
 
   <section class="card vmod" id="vOptions" hidden>
@@ -296,7 +292,6 @@
       </div>
     </div>
     <p class="vnote">Each range reflects that way to sell — none of them is an appraisal of your home.</p>
-    <a class="vask" href="tel:1234567890">Which is right for you? Ask <span class="xName">Jason</span> &rarr;</a>
   </section>
 
   <section class="card vmod" id="vSpectrum" hidden>
@@ -321,51 +316,6 @@
       </div>
     </div>
     <p class="vnote">Every way to sell, on one line — the trade is speed for price, and where you land is your call.</p>
-    <a class="vask" href="tel:1234567890">Find your spot on the line with <span class="xName">Jason</span> &rarr;</a>
-  </section>
-
-  <!-- expert concierge: one card-sized slot; exclusive = one expert,
-       maxsold = the 6-buyer roster cycling through the same slot.
-       Sits BELOW the value module (moved 2026-08-04). -->
-  <section class="card xslot" id="xExclusive">
-    <div class="xcard-x">
-      <div class="xcard" style="flex:1">
-        <div class="avatar">JD</div>
-        <div class="xwho">
-          <span class="eyebrow">Your local expert</span>
-          <p class="xname">Jason Dalbey</p>
-          <p class="xbrok">BHHS The Preferred Realty</p>
-        </div>
-      </div>
-      <div style="flex:1;min-width:0">
-        <p class="xline">Jason has your report and knows your local market — he can walk you through your numbers and what they mean for your options.</p>
-        <div class="xbtns">
-          <a class="btn btn-cta" href="tel:1234567890">Call</a>
-          <a class="btn btn-cta" href="sms:1234567890">Text</a>
-          <a class="btn btn-line" href="tel:1234567890">Schedule</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="card xslot" id="xMaxsold" hidden>
-    <div class="xhead">
-      <span class="eyebrow">Your matched pros</span>
-      <span class="xcount">6 local pros are reviewing your property</span>
-    </div>
-    <div class="xtrack" id="xTrack">
-      <div class="xpro"><div class="avatar">BA</div><div class="xwho"><p class="xname">Betty Alexander</p><p class="xbrok">Sotheby's Realty</p><span class="xtag">Agent</span></div></div>
-      <div class="xpro"><div class="avatar">MC</div><div class="xwho"><p class="xname">Mariam Chesterfield</p><p class="xbrok">Berkshire Hathaway</p><span class="xtag">Agent</span></div></div>
-      <div class="xpro"><div class="avatar">DJ</div><div class="xwho"><p class="xname">Denall Johnson</p><p class="xbrok">Fave Realty</p><span class="xtag">Agent</span></div></div>
-      <div class="xpro"><div class="avatar">BT</div><div class="xwho"><p class="xname">Bradley Thompson</p><p class="xbrok">eXp Realty</p><span class="xtag">Agent</span></div></div>
-      <div class="xpro"><div class="avatar">EG</div><div class="xwho"><p class="xname">Ester Grant</p><p class="xbrok">Luxury King Realty</p><span class="xtag">Agent</span></div></div>
-      <div class="xpro"><div class="avatar">JT</div><div class="xwho"><p class="xname">John Taylor Tent</p><p class="xbrok">Next Level Acquisitions LLC</p><span class="xtag">Investor</span></div></div>
-    </div>
-    <div class="xnav">
-      <button class="xarrow" id="xPrev" aria-label="Previous pros">&#8592;</button>
-      <div class="xdots" id="xDots" role="tablist"></div>
-      <button class="xarrow" id="xNext" aria-label="Next pros">&#8594;</button>
-    </div>
   </section>
 
   <!-- supporting modules -->
@@ -380,12 +330,11 @@
         <div class="fact"><span>Lot size</span><b>0.28 ac</b></div>
         <div class="fact"><span>Type</span><b>Single family</b></div>
       </div>
-      <p class="hint">Something look off? <a href="tel:1234567890">Your expert can correct it</a> — better facts mean better numbers.</p>
     </section>
 
     <section class="card equity">
       <h2 class="sec">Estimate your net equity</h2>
-      <p>See what you'd walk away with after your payoff and selling costs — your expert can run it with you in a minute.</p>
+      <p>See what you'd walk away with after your payoff and selling costs.</p>
       <button class="btn btn-line" type="button">Enter information</button>
     </section>
   </div>
@@ -438,53 +387,6 @@
   var values = qp.get("values");
   var mods = { combined: "vCombined", options: "vOptions", spectrum: "vSpectrum" };
   document.getElementById(mods[values] || mods.combined).hidden = false;
-
-  // ---- terms variant: exclusive expert vs maxsold carousel ----
-  var maxsold = qp.get("terms") === "maxsold";
-  document.getElementById("xExclusive").hidden = maxsold;
-  document.getElementById("xMaxsold").hidden = !maxsold;
-  if (maxsold) {
-    document.querySelectorAll(".xName").forEach(function (el) { el.textContent = "your pros"; });
-  }
-
-  // ---- carousel: scroll-snap pages + dots (mobile 1-up, desktop 3-up) ----
-  var track = document.getElementById("xTrack");
-  var dotsWrap = document.getElementById("xDots");
-  if (maxsold && track) {
-    var dots = [];
-    function pageCount() { return Math.max(1, Math.round(track.scrollWidth / track.clientWidth)); }
-    function page() { return Math.round(track.scrollLeft / track.clientWidth); }
-    function buildDots() {
-      dotsWrap.innerHTML = ""; dots = [];
-      for (var i = 0; i < pageCount(); i++) {
-        var d = document.createElement("button");
-        d.className = "xdot"; d.setAttribute("aria-label", "Page " + (i + 1));
-        (function (n) {
-          d.addEventListener("click", function () {
-            track.scrollTo({ left: n * track.clientWidth, behavior: "smooth" });
-          });
-        })(i);
-        dotsWrap.appendChild(d); dots.push(d);
-      }
-      sync();
-    }
-    function sync() {
-      var p = page();
-      dots.forEach(function (d, i) { d.classList.toggle("on", i === p); });
-    }
-    var raf = 0;
-    track.addEventListener("scroll", function () {
-      cancelAnimationFrame(raf); raf = requestAnimationFrame(sync);
-    });
-    window.addEventListener("resize", buildDots);
-    document.getElementById("xPrev").addEventListener("click", function () {
-      track.scrollBy({ left: -track.clientWidth, behavior: "smooth" });
-    });
-    document.getElementById("xNext").addEventListener("click", function () {
-      track.scrollBy({ left: track.clientWidth, behavior: "smooth" });
-    });
-    buildDots();
-  }
 
   // ---- value history chart: two datasets, same SVG ----
   var D = {
@@ -595,6 +497,7 @@
 </div>
 <div id="pixelDiv"></div>
 <script src="assets/pulse-config.js"></script>
+<script src="assets/google-config.js"></script>
 <script>
 (function () {
   try {
@@ -602,7 +505,30 @@
     if (px) document.getElementById("pixelDiv").innerHTML = px;
     // Show the address the user actually submitted (values/stats stay demo).
     var a = sessionStorage.getItem("zbAddressDisplay");
-    if (a) document.getElementById("reportAddr").textContent = a;
+    if (a) {
+      document.getElementById("reportAddr").textContent = a;
+      document.title = a.split(",")[0] + " \u2014 Your Cash Value Report";
+      var ph = document.querySelector(".mast .photo");
+      if (ph) {
+        ph.alt = a.split(",")[0];
+        // Street View of the actual house: the free metadata check gates the
+        // billable render, and any failure (no key permission, no imagery,
+        // network) silently keeps the stock photo. Needs Street View Static
+        // API enabled on the key in assets/google-config.js.
+        if (window.GOOGLE_MAPS_KEY && window.GOOGLE_MAPS_KEY.indexOf("PASTE") === -1) {
+          var loc = encodeURIComponent(a);
+          fetch("https://maps.googleapis.com/maps/api/streetview/metadata?location=" + loc + "&source=outdoor&key=" + window.GOOGLE_MAPS_KEY)
+            .then(function (mr) { return mr.json(); })
+            .then(function (m) {
+              if (!m || m.status !== "OK") return;
+              var sv = new Image();
+              sv.onload = function () { ph.src = sv.src; };
+              sv.src = "https://maps.googleapis.com/maps/api/streetview?size=600x340&location=" + loc + "&fov=75&source=outdoor&key=" + window.GOOGLE_MAPS_KEY;
+            })
+            .catch(function () {});
+        }
+      }
+    }
   } catch (e) {}
 
   // ---- "Access anytime" notice: report link texted to the lead's phone ----
