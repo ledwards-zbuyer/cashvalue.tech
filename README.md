@@ -26,9 +26,8 @@ Both funnel pages ship the rebuilt opt-in screens:
   RealtorOpt / opt-in contact saves, neutral all-set copy). The clickwrap names
   zBuyer dba CashValue.tech for Terms/Privacy.
 - **SMS step** — the campaign's own 10DLC opt-in and **the screenshot to submit with
-  campaign registration**: sender + program description, personalized first-text
-  preview bubble (doubles as sample message #1), frequency/rates/HELP/STOP, and the
-  bolded no-sharing declaration. Decline is "No thanks — I'll view it online."
+  campaign registration**: sender + program description, frequency/rates/HELP/STOP,
+  and the bolded no-sharing declaration. Decline is "No thanks — I'll view it online."
 - `?terms=v1` restores the previous screens; `exclusive` / `maxsold` / `inline` /
   `inline-maxsold` ride on v1 (see `compare.html`).
 - **v2 is exclusive-only**: whatever the live `GetContactOptInNames` returns, only the
