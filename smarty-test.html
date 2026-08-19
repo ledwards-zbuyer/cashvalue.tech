@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Smarty key test — CashValue</title>
+<style>
+  body{font-family:ui-monospace,Menlo,Consolas,monospace;background:#0A1426;color:#E7ECF2;padding:32px 20px;line-height:1.6}
+  .wrap{max-width:720px;margin:0 auto}
+  h1{font-size:18px;color:#fff;margin-bottom:18px}
+  .row{margin:6px 0;font-size:13.5px;color:#9DAAC1}
+  .row b{color:#E7ECF2}
+  #verdict{margin:22px 0;padding:16px 18px;border-radius:12px;font-size:15px;font-weight:700;background:#16233F;border:1px solid #2C3A57}
+  #verdict.ok{background:#0E2E1F;border-color:#1D9F6E;color:#7FD4AB}
+  #verdict.bad{background:#331313;border-color:#D8442B;color:#FFB4A3}
+  #fix{font-size:13.5px;color:#C8D2DE;white-space:pre-wrap}
+  #raw{margin-top:18px;font-size:12px;color:#7C8AA2;white-space:pre-wrap;word-break:break-all}
+  a{color:#3BA4F4}
+</style>
+</head>
+<body><div class="wrap">
+  <h1>Smarty autocomplete self-test</h1>
+  <div class="row">Page origin: <b id="orig"></b></div>
+  <div class="row">Key in assets/smarty-config.js: <b id="key"></b></div>
+  <div class="row">Request: <b id="req">sending&hellip;</b></div>
+  <div id="verdict">Running&hellip;</div>
+  <div id="fix"></div>
+  <div id="raw"></div>
+  <script src="assets/smarty-config.js"></script>
+  <script>
+    document.getElementById("orig").textContent = location.origin;
+    var KEY = window.SMARTY_EMBEDDED_KEY || "(none)";
+    document.getElementById("key").textContent = KEY;
+    var v = document.getElementById("verdict"), fx = document.getElementById("fix"), raw = document.getElementById("raw");
+    var url = "https://us-autocomplete-pro.api.smarty.com/lookup?key=" + encodeURIComponent(KEY) +
+              "&search=" + encodeURIComponent("1600 Pennsylvania Ave") + "&max_results=3";
+    fetch(url).then(function (r) {
+      document.getElementById("req").textContent = "HTTP " + r.status + " from us-autocomplete-pro.api.smarty.com";
+      return r.text().then(function (t) { return { s: r.status, t: t }; });
+    }).then(function (res) {
+      raw.textContent = "Response body:\n" + (res.t || "(empty)").slice(0, 600);
+      if (res.s === 200) {
+        var n = 0;
+        try { n = (JSON.parse(res.t).suggestions || []).length; } catch (e) {}
+        v.className = "ok";
+        v.textContent = "✓ WORKING — key and host accepted (" + n + " suggestions returned).";
+        fx.textContent = "If the homepage address box still shows nothing, hard-refresh it (Ctrl+Shift+R / Cmd+Shift+R) — your browser may be running a cached copy of the old config.";
+      } else if (res.s === 401) {
+        v.className = "bad";
+        v.textContent = "✗ 401 — Smarty rejected this key from this host.";
+        fx.textContent = "In smarty.com → Account → API Keys → key " + KEY + ":\n" +
+          "• Allowed hosts must contain exactly:  cashvalue.tech  and  www.cashvalue.tech\n" +
+          "  (bare hostnames — no https://, no trailing slash, no path)\n" +
+          "• The key must be the EMBEDDED (website) type — not a secret Auth ID/Token\n" +
+          "• The key must be Active, and the change saved — edits take a minute or two, then reload this page.";
+      } else if (res.s === 402) {
+        v.className = "bad";
+        v.textContent = "✗ 402 — key is recognized, but no active US Autocomplete Pro subscription covers it.";
+        fx.textContent = "Check the plan/licenses on the Smarty account — the US Autocomplete Pro API needs an active subscription.";
+      } else {
+        v.className = "bad";
+        v.textContent = "✗ HTTP " + res.s + " — unexpected response.";
+        fx.textContent = "Reload this page in a couple of minutes; if it persists, send a screenshot of this page.";
+      }
+    }).catch(function (err) {
+      document.getElementById("req").textContent = "request failed before reaching Smarty";
+      v.className = "bad";
+      v.textContent = "✗ The request never reached Smarty (" + err + ").";
+      fx.textContent = "Usually an ad-blocker or privacy shield (uBlock, Brave shields) blocking the call or stripping the Referer header Smarty needs. Retry in a plain Chrome window with extensions off.";
+    });
+  </script>
+</div></body>
+</html>
