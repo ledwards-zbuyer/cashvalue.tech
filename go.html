@@ -268,11 +268,6 @@
 .lm-v2 .lm-v2-row{display:block;cursor:pointer;user-select:none;-webkit-user-select:none}
 .lm-v2 .lm-consent{display:block;line-height:1.4;text-align:left}
 .lm-v2.checked{background:#EAF0F8;border-color:#D6DFEC}
-.lm-preview{margin-top:11px;text-align:left}
-.lm-plabel{font-size:10.5px;font-weight:800;letter-spacing:.1em;color:#93A2BA;text-transform:uppercase;margin-bottom:6px}
-.lm-bubble{background:#E9EDF4;border-radius:15px 15px 15px 4px;padding:10px 13px;font-size:12.6px;line-height:1.5;color:#3D4B64;text-align:left}
-.lm-bubble .lm-from{font-weight:800;color:var(--ink);font-size:10.5px;letter-spacing:.04em;display:block;margin-bottom:2px}
-.lm-bubble .lm-link{color:var(--c1);font-weight:600}
   .lm-cta{margin-top:4px;background:var(--cta);color:#fff;border:none;font-family:inherit;font-weight:800;font-size:16.5px;padding:16px;border-radius:12px;cursor:pointer}
   .lm-cta:hover{background:var(--cta-d)}
   @media (max-width:560px){
@@ -434,16 +429,12 @@
       <!-- second TrustedForm OFFER: the SMS opt-in is its own consent moment -->
       <div class="lm-screen lm-final" data-screen="textreport" hidden data-tf-element-role="offer">
         <h3>Get your report by text</h3>
-        <p class="lm-sub lm-q">We&rsquo;ll text your link so it&rsquo;s always handy. Questions? Our AI assistant answers right in that thread &mdash; it stays quiet unless you reply.</p>
+        <p class="lm-sub lm-q">We&rsquo;ll text you your report link. Questions? Just reply &mdash; our AI assistant answers.</p>
         <div class="lm-phone-wrap">
           <input id="textPhone" type="tel" inputmode="tel" placeholder="Phone number" autocomplete="tel" aria-label="Mobile number" data-tf-element-role="consent-grantor-phone">
           <svg class="lm-phone-edit" width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 20h4L18.5 9.5a2.1 2.1 0 0 0-3-3L5 17v3z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M13.5 6.5l3 3" stroke="currentColor" stroke-width="2"/></svg>
         </div>
         <p class="lm-err" id="textErr" hidden></p>
-        <div class="lm-preview">
-          <div class="lm-plabel">The first text you&rsquo;ll get</div>
-          <div class="lm-bubble"><span class="lm-from">CashValue</span><span id="smsPreview">Your Cash Value Report is ready: <span class="lm-link">cashvalue.tech/r/8k2x4</span> &mdash; I&rsquo;m the CashValue AI assistant. Reply here anytime with a question about your numbers. Reply HELP for help, STOP to opt out.</span></div>
-        </div>
         <div class="lm-disclosure" data-tf-element-role="consent-language">
           <p class="lm-consent">By tapping &ldquo;Text my Report,&rdquo; you agree to receive <span data-tf-element-role="contact-method">automated texts</span> from <span data-tf-element-role="consent-advertiser-name">zBuyer dba CashValue.tech</span> at the number above: your report link, replies from our AI assistant when you message it, and occasional marketing texts, some of which may be AI-generated. Msg frequency varies. Msg &amp; data rates may apply. Reply HELP for help or STOP to cancel. <b>Your mobile number and opt-in data are never sold or shared with third parties or affiliates for marketing.</b> <a href="terms.html" target="_blank" rel="noopener">Terms</a> &middot; <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a></p>
         </div>
