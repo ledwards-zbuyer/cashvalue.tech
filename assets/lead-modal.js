@@ -283,12 +283,13 @@
     phoneEl.addEventListener("blur", function () { psave(P.F.phone, phoneDigits(phoneEl.value)); });
     emailEl.addEventListener("blur", function () { psave(P.F.email, emailEl.value.trim()); });
 
-    // Live matched pros from GetContactOptInNames (cached once per session —
-    // the API returns different sets per call). Falls back silently to the
-    // hard-coded disclosure names if the call fails. Skipped entirely when a
-    // sale model is forced via ?terms= (demo previews keep their roster; no
-    // opt-in contacts are recorded for those sessions either).
-    if (!FORCED_MAXSOLD) P.getOptInContacts().then(function (d) {
+    // DEMO: the displayed member is pinned to the persona in the markup
+    // (Jason Dalbey) — the live GetContactOptInNames pool returns company
+    // records ("HousingNow.com"), not a person, so the live render is skipped
+    // and no OptInContactID is recorded (Lucas 2026-08-20). Flip the flag to
+    // restore live names.
+    var DEMO_PINNED_MEMBER = true;
+    if (!DEMO_PINNED_MEMBER && !FORCED_MAXSOLD) P.getOptInContacts().then(function (d) {
       if (!d || !d.contactOptInNames || !d.contactOptInNames.length) return;
       // v2 sells exclusively (Lucas 2026-08-19): only the FIRST contact on
       // the list is shown, consented to, and recorded — never a roster, never

@@ -31,10 +31,12 @@ Both funnel pages ship the rebuilt opt-in screens:
   and the bolded no-sharing declaration. Decline is "No thanks — I'll view it online."
 - `?terms=v1` restores the previous screens; `exclusive` / `maxsold` / `inline` /
   `inline-maxsold` ride on v1 (see `compare.html`).
-- **v2 is exclusive-only**: whatever the live `GetContactOptInNames` returns, only the
-  **first** contact is shown in the consent sentence, and only that contact's ID is
-  recorded on opt-in — no roster, no per-pro checkboxes. The v1 previews keep the
-  multi-pro render for comparison.
+- **v2 is exclusive-only**, and on this demo the displayed member is **pinned to the
+  demo persona** (Jason Dalbey) — the live `GetContactOptInNames` pool returns company
+  records ("HousingNow.com"), so the live render is skipped and no `OptInContactID`
+  is recorded (flip `DEMO_PINNED_MEMBER` in `assets/lead-modal.js` to restore live
+  names; live mode shows/records only the first contact — no roster, no per-pro
+  checkboxes).
 
 ## ⚠️ The lander is live
 
