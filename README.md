@@ -14,6 +14,7 @@ seller path @ `52087da`, rebranded **zBuyer dba CashValue.tech**.
 | `intel.html` | `report-intel-classic-blue.html` | Property Intelligence Report (standalone — no longer linked from the report) |
 | `terms.html` / `privacy.html` | `terms-` / `privacy-classic-blue.html` | Legal pages (template copy) |
 | `compare.html` | `compare-terms.html` | Internal chooser: consent v2 vs v1 + v1 sale-model variants |
+| `do-not-sell.html` | (new) | CCPA request form: email/phone → `SaveLeadData` `fld=DNSell&val=1` (linked from every "Do Not Sell" link) |
 | `shots/harness.html` | `shots/harness.html` | QA step-driver (iframes the homepage) |
 
 ## Consent architecture v2 (the default)
