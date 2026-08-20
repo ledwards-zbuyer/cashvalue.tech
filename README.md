@@ -11,7 +11,7 @@ seller path @ `52087da`, rebranded **zBuyer dba CashValue.tech**.
 | `index.html` | `option-1-classic.html` | Homepage front door: address-entry hero + full funnel modal (**live** Pulse API). Stripped of all agents/investors, buy-side, and zbuyer.com links — consumer seller path only. |
 | `go.html` | `landing-classic-blue.html` | DR lander for paid traffic (`data-dr` modal lock-in, same live funnel) |
 | `report.html` | `report-classic-blue.html` | Cash Value Report — the funnel destination |
-| `intel.html` | `report-intel-classic-blue.html` | Property Intelligence Report ("Go deeper" from the report) |
+| `intel.html` | `report-intel-classic-blue.html` | Property Intelligence Report (standalone — no longer linked from the report) |
 | `terms.html` / `privacy.html` | `terms-` / `privacy-classic-blue.html` | Legal pages (template copy) |
 | `compare.html` | `compare-terms.html` | Internal chooser: consent v2 vs v1 + v1 sale-model variants |
 | `shots/harness.html` | `shots/harness.html` | QA step-driver (iframes the homepage) |
